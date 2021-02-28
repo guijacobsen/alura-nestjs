@@ -27,8 +27,8 @@ export class LivrosController {
 
   @Post()
   store(@Body() body: Livro) {
-    const produto = { id: Math.random(), ...body };
-    return this.livrosService.store(produto);
+    const livro = { id: Math.random(), ...body };
+    // return this.livrosService.store(livro);
   }
 
   @Put()
