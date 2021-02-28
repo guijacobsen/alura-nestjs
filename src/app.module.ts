@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize/dist/sequelize.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -8,13 +9,14 @@ import { LivrosService } from './livros.service';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: 'localhost',
+      host: process.env.DB_HOST,
       port: 5432,
-      username: 'docker',
-      password: 'docker',
-      database: 'alura-nestjs',
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       autoLoadModels: true,
       synchronize: true,
     }),
